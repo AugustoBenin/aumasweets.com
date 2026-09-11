@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auma Sweets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --cream: #f9f6ed;
+            --burgundy: #850000;
+            --burgundy-dark: #5c0000;
+            --burgundy-light: #a01818;
+            --gold: #c9a96e;
+            --warm-gray: #8a7e6f;
+        }
+
+        body {
+            background-color: var(--cream);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Glow sutil no topo */
+        .bg-glow-top {
+            background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(133, 0, 0, 0.12), transparent 70%);
+        }
+
+        /* Borda animada na foto de perfil */
+        @keyframes borderGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(133, 0, 0, 0.3), 0 0 40px rgba(133, 0, 0, 0.15);
+                border-color: rgba(133, 0, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(133, 0, 0, 0.5), 0 0 60px rgba(133, 0, 0, 0.2);
+                border-color: rgba(133, 0, 0, 0.7);
+            }
+        }
+
+        .profile-border-animated {
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        /* Efeito glassmorphism adaptado - cream mode */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(133, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(133, 0, 0, 0.4);
+            box-shadow: 0 8px 30px rgba(133, 0, 0, 0.12);
+            transform: scale(1.02);
+        }
+
+        /* Linha decorativa */
+        .divider-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .divider-line::before,
+        .divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(133, 0, 0, 0.3), transparent);
+            max-width: 80px;
+        }
+
+        /* Animação de entrada dos cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Estrela decorativa */
+        .star-icon {
+            color: var(--burgundy);
+            opacity: 0.6;
+        }
+
+        /* Textura sutil de papel */
+        .paper-texture {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(133, 0, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 169, 110, 0.04) 0%, transparent 50%);
+        }
+
+        /* Tag de "Alto Padrão" */
+        .premium-tag {
+            background: linear-gradient(135deg, rgba(133, 0, 0, 0.08), rgba(201, 169, 110, 0.08));
+            border: 1px solid rgba(133, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="paper-texture">
+
+    <!-- Glow de fundo -->
+    <div class="fixed inset-0 bg-glow-top pointer-events-none"></div>
+
+    <!-- Container Principal -->
+    <main class="relative min-h-screen flex items-center justify-center py-10 px-4">
+        <div class="w-full max-w-md">
+
+            <!-- ===== PERFIL (TOPO) ===== -->
+            <header class="flex flex-col items-center text-center mb-6">
+                <!-- Foto de perfil com borda animada -->
+                <div class="relative mb-4">
+                    <div class="w-32 h-32 rounded-full profile-border-animated border-4 overflow-hidden bg-white shadow-lg flex items-center justify-center">
+                        <img 
+                            src="https://adapta-one-prod.s3.sa-east-1.amazonaws.com/lbenin72%40gmail.com/png/logo_com_nome_1_.png" 
+                            alt="Auma Sweets - Logo" 
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+
+                <!-- Nome e cargo -->
+                <h1 class="font-serif-display text-3xl font-bold tracking-wide" style="color: var(--burgundy);">
+                    Auma Sweets
+                </h1>
+                <p class="font-cormorant text-lg italic mt-1" style="color: var(--warm-gray);">
+                    Confeitaria de Alto Padrão
+                </p>
+
+                <!-- Tag premium -->
+                <div class="premium-tag px-4 py-1.5 rounded-full mt-3">
+                    <span class="text-xs font-medium tracking-widest uppercase" style="color: var(--burgundy);">
+                        ✦ Feito com amor e dedicação ✦
+                    </span>
+                </div>
+            </header>
+
+            <!-- Divisor -->
+            <div class="divider-line">
+                <i class="fa-solid fa-star star-icon text-xs"></i>
+            </div>
+
+            <!-- ===== BOTÕES / CARDS ===== -->
+            <div class="flex flex-col gap-4">
+
+                <!-- Card 1: WhatsApp -->
+                <a 
+                    href="https://wa.me/55SEUNUMERO?text=Olá!%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20fazer%20um%20pedido" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="glass-card rounded-2xl overflow-hidden fade-in-up delay-1 block no-underline"
+                >
+                    <div class="flex items-stretch">
+                        <!-- Lado ESQUERDO: Texto -->
+                        <div class="flex-1 flex flex-col justify-center p-5">
+                            <h2 class="font-serif-display text-xl font-bold" style="color: var(--burgundy);">
+                                Faça seu Pedido
+                            </h2>
+                            <p class="text-sm mt-1" style="color: var(--warm-gray);">
+                                Bolos, doces e sobremesadas artesanais. Chame no WhatsApp e faça seu pedido personalizado.
+                            </p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <i class="fa-brands fa-whatsapp text-lg" style="color: #25D366;"></i>
+                                <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--burgundy);">
+                                    Pedir pelo WhatsApp <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Lado DIREITO: Imagem -->
+                        <div class="w-28 h-28 flex-shrink-0 overflow-hidden rounded-l-2xl">
+                            <img 
+                                src="https://images.unsplash.com/photo-1565958011703-44f98eda0bb5?w=300&h=300&fit=crop" 
+                                alt="Doces Auma Sweets" 
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: iFood -->
+                <a 
+                    href="https://www.ifood.com.br/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="glass-card rounded-2xl overflow-hidden fade-in-up delay-2 block no-underline"
+                >
+                    <div class="flex items-stretch">
+                        <!-- Lado ESQUERDO: Texto -->
+                        <div class="flex-1 flex flex-col justify-center p-5">
+                            <h2 class="font-serif-display text-xl font-bold" style="color: var(--burgundy);">
+                                Peça pelo iFood
+                            </h2>
+                            <p class="text-sm mt-1" style="color: var(--warm-gray);">
+                                Entrega rápida e prática. Acesse nossa vitrine no iFood e receba em casa.
+                            </p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--burgundy);">
+                                    Acessar iFood <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Lado DIREITO: Imagem -->
+                        <div class="w-28 h-28 flex-shrink-0 overflow-hidden rounded-l-2xl">
+                            <img 
+                                src="https://images.unsplash.com/photo-1551024506-0bccd8283487?w=300&h=300&fit=crop" 
+                                alt="iFood Auma Sweets" 
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Cardápio / Galeria -->
+                <a 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="glass-card rounded-2xl overflow-hidden fade-in-up delay-3 block no-underline"
+                >
+                    <div class="flex items-stretch">
+                        <!-- Lado ESQUERDO: Texto -->
+                        <div class="flex-1 flex flex-col justify-center p-5">
+                            <h2 class="font-serif-display text-xl font-bold" style="color: var(--burgundy);">
+                                Nosso Cardápio
+                            </h2>
+                            <p class="text-sm mt-1" style="color: var(--warm-gray);">
+                                Conheça nossa linha completa de bolos, tortas, brigadeiros gourmet e sobremesadas exclusivas.
+                            </p>
+                            <div class="flex items-center gap-2 mt-3">
+                                <i class="fa-solid fa-book-open text-sm" style="color: var(--burgundy);"></i>
+                                <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--burgundy);">
+                                    Ver Cardápio <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Lado DIREITO: Imagem -->
+                        <div class="w-28 h-28 flex-shrink-0 overflow-hidden rounded-l-2xl">
+                            <img 
+                                src="https://images.unsplash.com/photo-1606313560671-d36f7f9a6b7b?w=300&h=300&fit=crop" 
+                                alt="Cardápio Auma Sweets" 
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Divisor inferior -->
+            <div class="divider-line mt-6">
+                <i class="fa-solid fa-utensils star-icon text-xs"></i>
+            </div>
+
+            <!-- ===== RODAPÉ: Redes sociais ===== -->
+            <footer class="flex justify-center gap-6 mb-4">
+                <a 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:scale-110 transition-transform no-underline"
+                    aria-label="Instagram"
+                >
+                    <i class="fa-brands fa-instagram text-lg" style="color: var(--burgundy);"></i>
+                </a>
+                <a 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:scale-110 transition-transform no-underline"
+                    aria-label="Facebook"
+                >
+                    <i class="fa-brands fa-facebook text-lg" style="color: var(--burgundy);"></i>
+                </a>
+                <a 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:scale-110 transition-transform no-underline"
+                    aria-label="TikTok"
+                >
+                    <i class="fa-brands fa-tiktok text-lg" style="color: var(--burgundy);"></i>
+                </a>
+            </footer>
+
+            <!-- Créditos -->
+            <p class="text-center text-xs font-cormorant italic" style="color: var(--warm-gray);">
+                Auma Sweets © 2026 — Doces que tocam a alma
+            </p>
+
+        </div>
+    </main>
+
+    <script>
+        // Substitua SEUNUMERO pelo seu número de WhatsApp (ex: 5511999999999)
+        // Substitua os links href="#" pelos links reais do seu Instagram, Facebook, TikTok e iFood
+    </script>
+</body>
+</html>
